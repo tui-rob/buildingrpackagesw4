@@ -4,9 +4,11 @@
 \alias{fars_summarize_years}
 \title{Summarize multiple FARS .csv format data files}
 \usage{
-fars_summarize_years(years)
+fars_summarize_years(path, years)
 }
 \arguments{
+\item{path}{Path to data files}
+
 \item{years}{A vector of years (e.g. c(2013, 2014))}
 }
 \value{
@@ -16,6 +18,6 @@ This function returns a tibble with the counts of observations in each year/mont
 This function reads in multiple FARS .csv format data files and summarises the data by returning count observations in each year/month category.
 }
 \examples{
-fars_summarize_years(c(2013, 2014))
+fars_summarize_years(system.file("extdata", package = "buildingrpackagesw4"), c(2013, 2014))
 
 }

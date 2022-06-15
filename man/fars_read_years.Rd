@@ -4,9 +4,11 @@
 \alias{fars_read_years}
 \title{Read in multiple FARS .csv format data files and extract year/month columns}
 \usage{
-fars_read_years(years)
+fars_read_years(path, years)
 }
 \arguments{
+\item{path}{Path to data files}
+
 \item{years}{A vector of years (e.g. c(2013, 2014))}
 }
 \value{
@@ -16,6 +18,6 @@ This function returns a tibble containing year/month columns. If an invalid year
 This function reads in a series of .csv FARS data files and returns a tibble containing month and year columns from those data files.
 }
 \examples{
-fars_read_years(c(2013, 2014))
+fars_read_years(system.file("extdata", package = "buildingrpackagesw4"), c(2013, 2014))
 
 }

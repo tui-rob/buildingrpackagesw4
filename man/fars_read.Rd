@@ -4,9 +4,11 @@
 \alias{fars_read}
 \title{Read in .csv format FARS data file to a tibble}
 \usage{
-fars_read(filename)
+fars_read(path, filename)
 }
 \arguments{
+\item{path}{Path to data}
+
 \item{filename}{A character string giving the name of the data file}
 }
 \value{
@@ -16,6 +18,6 @@ This function returns a tibble containing the FARS data. If invalid filename pro
 This function reads a in .csv format FARS data file to a data.frame.
 }
 \examples{
-fars_read("accident_2013.csv.bz2")
+fars_read(system.file("extdata", package = "buildingrpackagesw4"), "accident_2013.csv.bz2")
 
 }

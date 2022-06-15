@@ -4,9 +4,11 @@
 \alias{fars_map_state}
 \title{Plot accident data for state}
 \usage{
-fars_map_state(state.num, year)
+fars_map_state(path, state.num, year)
 }
 \arguments{
+\item{path}{Path to data file}
+
 \item{state.num}{Integer representing state for which data required}
 
 \item{year}{Year of data required  (e.g. 2013)}
@@ -19,6 +21,6 @@ If no data exists for provided year and state_num parameters, "no accidents to p
 This function reads in a FARS .csv format data file for a given year, extracts data for a given state number, and plot accidents for that state on a map.
 }
 \examples{
-fars_map_state(1, 2013)
+fars_map_state(system.file("extdata", package = "buildingrpackagesw4"), 1, 2013)
 
 }

@@ -3,8 +3,8 @@ Title: Coursera Building R Packages Week 4 Assignment
 Version: 0.0.0.9000
 Authors@R: 
     person("Robert", "Sullivan", , "robert.sullivan@example.com", role = c("aut", "cre"))
-Description: Coursera Building R Packages Week 4 Assignment
-License: `use_mit_license()`
+Description: Coursera Building R Packages Week 4 Assignment.
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.0
@@ -16,3 +16,9 @@ Suggests:
     testthat (>= 3.0.0)
 VignetteBuilder: knitr
 Config/testthat/edition: 3
+Imports: 
+    magrittr,
+    dplyr,
+    maps,
+    readr,
+    tidyr

@@ -16,6 +16,6 @@ This function returns a string representing a valid FARS filename format
 This function creates a FARS filename string from a provided year input.
 }
 \examples{
-make_filename("2013")
+make_filename(2013)
 
 }
