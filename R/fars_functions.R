@@ -2,11 +2,11 @@
 #'
 #' This function reads a in .csv format FARS data file to a data.frame.
 #'
-#' @param filename A character string giving the name of the data file 
-#' 
+#' @param filename A character string giving the name of the data file
+#'
 #' @importFrom dplyr tbl_df
 #' @importFrom readr read_csv
-#'  
+#'
 #' @return This function returns a tibble containing the FARS data. If invalid filename provided, returns error with message that file does not exist.
 #'
 #' @examples
@@ -27,8 +27,8 @@ fars_read <- function(filename) {
 #'
 #' This function creates a FARS filename string from a provided year input.
 #'
-#' @param year The year of the data file in YYYY format (e.g. 2013) 
-#'  
+#' @param year The year of the data file in YYYY format (e.g. 2013)
+#'
 #' @return This function returns a string representing a valid FARS filename format
 #'
 #' @examples
@@ -45,11 +45,11 @@ make_filename <- function(year) {
 #'
 #' This function reads in a series of .csv FARS data files and returns a tibble containing month and year columns from those data files.
 #'
-#' @param years A vector of years (e.g. c(2013, 2014)) 
-#' 
+#' @param years A vector of years (e.g. c(2013, 2014))
+#'
 #' @importFrom dplyr mutate select
 #' @importFrom magrittr %>%
-#'  
+#'
 #' @return This function returns a tibble containing year/month columns. If an invalid year provided, returns NULL and provides warning.
 #'
 #' @examples
@@ -62,7 +62,7 @@ fars_read_years <- function(years) {
                 file <- make_filename(year)
                 tryCatch({
                         dat <- fars_read(file)
-                        dplyr::mutate(dat, year = year) %>% 
+                        dplyr::mutate(dat, year = year) %>%
                                 dplyr::select(MONTH, year)
                 }, error = function(e) {
                         warning("invalid year: ", year)
@@ -71,16 +71,16 @@ fars_read_years <- function(years) {
         })
 }
 
-#' Summarize multiple FARS .csv format data files 
+#' Summarize multiple FARS .csv format data files
 #'
 #' This function reads in multiple FARS .csv format data files and summarises the data by returning count observations in each year/month category.
 #'
-#' @param years A vector of years (e.g. c(2013, 2014)) 
-#' 
+#' @param years A vector of years (e.g. c(2013, 2014))
+#'
 #' @importFrom dplyr bind_rows group_by summarize n
 #' @importFrom magrittr %>%
 #' @importFrom tidyr spread
-#'  
+#'
 #' @return This function returns a tibble with the counts of observations in each year/month
 #'
 #' @examples
@@ -90,8 +90,8 @@ fars_read_years <- function(years) {
 
 fars_summarize_years <- function(years) {
         dat_list <- fars_read_years(years)
-        dplyr::bind_rows(dat_list) %>% 
-                dplyr::group_by(year, MONTH) %>% 
+        dplyr::bind_rows(dat_list) %>%
+                dplyr::group_by(year, MONTH) %>%
                 dplyr::summarize(n = n()) %>%
                 tidyr::spread(year, n)
 }
@@ -101,12 +101,12 @@ fars_summarize_years <- function(years) {
 #' This function reads in a FARS .csv format data file for a given year, extracts data for a given state number, and plot accidents for that state on a map.
 #'
 #' @param state.num Integer representing state for which data required
-#' @param year Year of data required  (e.g. 2013) 
-#' 
+#' @param year Year of data required  (e.g. 2013)
+#'
 #' @importFrom dplyr filter
 #' @importFrom maps map
 #' @importFrom graphics points
-#'  
+#'
 #' @return This function returns a map of the given state with accidents plotted for the given year. If invalid state number provided, error occurs and message returned.
 #' If no data exists for provided year and state_num parameters, "no accidents to plot" message trigged and NULL returned.
 #'
